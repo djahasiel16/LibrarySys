@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+
+    
+        {% if user.is_staff and b_books.exists %}
+        <div class="container" style="min-height: 70vh;">
+          {% include 'home/list_of_borrowers.html' %}
+        </div>
+        {% else %}
+        
+        <div class="position-relative text-center" style="height: 70vh;">
+          <div class="position-absolute top-50 start-50 translate-middle">
+            <h1>Hello {{user.username}}</h1>
+            <h3>Welcome to LybrarySys</h3>
+          </div>
+        </div>
+        
+
+        {% endif %}
+  
+{% endblock %}

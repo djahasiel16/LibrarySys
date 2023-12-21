@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Books Available {% endblock %}
+
+
+<div class="container">
+    {% block content %}
+    {% if not user.is_staff %}
+        <h1 class="text-center">All Books</h1>
+        <div class="row center">
+            {% for book in books %}
+            <div class="card mt-3 mx-3" style="width: 18rem;">
+                <img src="/media/{{ book.book_image }}" class="card-img-top p-2" alt="...">
+                <div class="card-body">
+                    <p></p>
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.description }}</p>
+                    <p class="card-text"><b>- {{ book.author }}</b></p>
+                    <span><a href="{% url 'borrow_book' user.id book.borrowed_book.id %}" class="btn btn-primary">Borrow Book | {{book.copies}} copie(s)</a></span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    {% else %}
+        <h1>Admin Dashboard</h1>
+    {% endif %}
+    {% endblock %}
+</div>

@@ -1,0 +1,50 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+{% if notEmpty == True %}
+<div class="container accordion py-5" id="accordionExample">
+    <h1>Manage Borrowed Books</h1>
+    {% for book, number in book_borrower %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{number|title}}" aria-expanded="true" aria-controls="collapse{{number|title}}">
+          {{book.borrowed_book.title}}
+        </button>
+      </h2>
+      <div id="collapse{{number|title}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <img src="/media/{{book.borrowed_book.book_image}}" alt="" width="300px">
+                </div>
+                
+                <div class="col-6">
+                    <p class="fw-bold">{{book.borrowed_book.title}} by {{book.borrowed_book.author}}</p>
+                    <p>{{book.borrowed_book.description}}</p>
+                    <p>Copies | {{book.borrowed_copies}}</p>
+                    <a href="{% url 'return_a_copy' book.id %}" class="btn btn-primary">Return a copy</a>
+                    {% if book.borrowed_copies == 1 %}
+                    <a href="{% url 'return_all_copies' book.id %}" class="btn btn-primary disabled">Return all copies</a>
+                    {% else %}
+                    <a href="{% url 'return_all_copies' book.id %}" class="btn btn-primary">Return all copies</a>
+                    {% endif %}
+                </div>
+
+            </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="position-relative text-center" style="height: 70vh;">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h1>Currently, you do not have any borrowed books yet</h1>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<form method="POST" class="form px-3" enctype="multipart/form-data">
+    {% csrf_token %}
+
+{% if update %}
+    <h1 >Update Book</h1>
+{% else%}
+    <h1>Create Book Entry</h1>
+{% endif %}
+    
+    {{ form.as_p }}
+
+
+    <!-- <button type="submit" class="btn btn-success">Update</button> -->
+
+    <button type="submit" class="btn btn-success">
+        {% if update %}
+        Update
+        {% else %}
+        Submit
+        {% endif %}
+    </button>
+
+</form>
+       
+{% endblock %}

@@ -1,0 +1,61 @@
+
+<div class="text-center">
+  <h1>Welcome to LibrarySys</h1>
+  <h3>List of Borrowers Today</h3>
+  <br>
+</div>
+
+<div class="row">
+  <div class="col bg-body-tertiary rounded-4 mx-4">
+    <h3 class="text-center">Borrowers</h3>
+    <hr>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Title</th>
+            <th scope="col">Date Borrowed</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for b_book in b_books %}
+            {% if b_book.borrowed_book.copies > 0 %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{b_book.user.username}}</td>
+            <td>{{b_book.borrowed_book.title}}</td>
+            <td>{{b_book.date_borrowed}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+    </table>
+  </div><!-- first col -->
+  <div class="col bg-body-tertiary rounded-4">
+      <h3 class="text-center">Returns</h3>
+      <hr>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Title</th>
+              <th scope="col">Date Returned</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for b_book in b_books %}
+              {% if b_book.status == "Returned" %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{b_book.user.username}}</td>
+              <td>{{b_book.borrowed_book.title}}</td>
+              <td>{{b_book.date_borrowed}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>

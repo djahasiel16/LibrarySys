@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+<h1>Registerd Users</h1>
+<div class="row">
+    {% for user in users %}
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card m-2">
+        <div class="card-body">
+          <h5 class="card-title">{{user}}</h5>
+          <p class="card-text">{{user.first_name}} {{user.last_name}}<br>{{user.email}}</p>
+          <a href="{% url 'update_user' user.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'remove_user' user.id %}" class="btn btn-danger">Remove</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

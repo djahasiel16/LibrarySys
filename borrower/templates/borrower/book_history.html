@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+
+{% block title %} Book History {% endblock %}
+
+
+    {% block content %}
+    <div class="container">
+        {% if notEmpty == True %}
+        <div class="row center m-3">
+            <h1 class="text-left">Books History</h1>
+            <ol class="list-group list-group-numbered">
+            {% for b_book in book_borrower %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div >
+                    <img src="/media/{{b_book.borrowed_book.book_image}}" alt="" width="100px" height="100px">
+                </div>
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">{{b_book.borrowed_book.title}}</div>
+                    "{{b_book.borrowed_book.description}}" <br>
+                   
+                    <p class="text-black fw-medium">- {{b_book.borrowed_book.author}}</p>
+                            
+        
+                </div>
+                {% if b_book.status == "Returned" %}
+                <span class="badge bg-success rounded-pill">{{b_book.status}}</span>
+                {% else %}
+                <span class="badge bg-warning rounded-pill">{{b_book.status}}</span>
+                {% endif %}
+                </li>
+        
+            {% endfor %}
+            </ol>
+        </div>
+        {% else %}
+        <div class="position-relative text-center" style="height: 70vh;">
+            <div class="position-absolute top-50 start-50 translate-middle">
+              <h1>You don't have any borrowing history</h1>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endblock %}
