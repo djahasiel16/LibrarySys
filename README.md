@@ -1,2 +1,1 @@
-# LibrarySys
-NORMI ITE4-Project
+LibrarySys Project
