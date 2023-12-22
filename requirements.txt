@@ -3,7 +3,6 @@ asgiref==3.7.2
 crispy-bootstrap4==2023.1
 Django==5.0
 django-crispy-forms==2.1
-django-tenants==3.6.1
 inflect==7.0.0
 Pillow==10.1.0
 psycopg==3.1.15
